@@ -1,6 +1,6 @@
 # Coworking Agreement
 
-<img src = "https://cdn.dribbble.com/users/32860/screenshots/7299569/media/6e11fef284d94269707ba2492a11f9aa.gif" align="right" width="50%" height="50%">
+<img src = "https://cdn.dribbble.com/users/32860/screenshots/7299569/media/6e11fef284d94269707ba2492a11f9aa.gif" align="right" hspace="50" vspace="50" width="40%" height="40%">
 
 ## Accessibility Needs
 *What does each team member need access to in order to succeed and show up the best they can?*
