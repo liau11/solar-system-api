@@ -1,7 +1,7 @@
 <h1>Coworking Agreement</h1>
 
 <h2>Accessibility Needs</h2>
-<p align="justify"><i>What does each team member need access to in order to succeed and show up the best they can?</i></p>
+<p><i>What does each team member need access to in order to succeed and show up the best they can?</i></p>
 
 <ul>
   <li>Being respectful and receptive to your partner's needs, schedule, learning style, and communication style. </li>
@@ -12,7 +12,7 @@
 <h2>Collaboration vs. individual work expectations</h2>
 <p align="justify"><i>Clarify your collaboration expectations- does your group want to write code together all of the time? Or divide work to do independently, then come together to share accomplishments? What tools and technologies can help your collaboration?</i></p>
 
-<img src = "https://cdn.dribbble.com/users/32860/screenshots/7299569/media/6e11fef284d94269707ba2492a11f9aa.gif" align="right" hspace="35" width="35%">
+<img src = "https://cdn.dribbble.com/users/32860/screenshots/7299569/media/6e11fef284d94269707ba2492a11f9aa.gif" align="right" hspace="-35" width="35%">
 
 <!-- <style>
 img {
