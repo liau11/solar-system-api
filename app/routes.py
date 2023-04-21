@@ -19,3 +19,5 @@ planets = [
     Planet(8, "Neptune", "Neptune has supersonic winds.", True),
     Planet(9, "Pluto", "Pluto is a Dwarf Planet.", False)
 ]
+
+planets_bp = Blueprint("planets", __name__, url_prefix="/planets")
