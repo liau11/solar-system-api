@@ -8,7 +8,7 @@
   - Being mindful of keeping our communication channels open.  
 
 ## Collaboration vs. individual work expectations
-<img src = "https://cdn.dribbble.com/users/32860/screenshots/7299569/media/6e11fef284d94269707ba2492a11f9aa.gif" align="right" vspace ="100" hspace="100" width="40%" height="40%"/>
+<img src = "https://cdn.dribbble.com/users/32860/screenshots/7299569/media/6e11fef284d94269707ba2492a11f9aa.gif" align="right" vspace ="-25" hspace="-25" width="40%" height="40%"/>
 
 *Clarify your collaboration expectations- does your group want to write code together all of the time? Or divide work to do independently, then come together to share accomplishments? What tools and technologies can help your collaboration?*
 
