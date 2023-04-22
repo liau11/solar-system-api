@@ -13,7 +13,7 @@
 
 <img src = "https://cdn.dribbble.com/users/32860/screenshots/7299569/media/6e11fef284d94269707ba2492a11f9aa.gif" align="right" hspace="-35" width="35%">
 
-<img src ="images/image_padding.png" align="right" width="25" height=225> 
+<img src ="images/image_padding.png" align="right" width="15" height=225> 
 
 <ul align="justify">
   <li>Ideally, we aim to collaboratively code together as much as possible throughout the entire project. However, if we reach a point where we can no longer make any efficient progress on problem-solving, we will try to work on it separately, regroup, and share our ideas the following day when we reconvene. From there, we will decide how to best solution together or how to best proceed from there.</li>
