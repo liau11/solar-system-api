@@ -17,7 +17,7 @@
 
 <ul align="justify">
   <li>Ideally, we aim to collaboratively code together as much as possible throughout the entire project. However, if we reach a point where we can no longer make any efficient progress on problem-solving, we will try to work on it separately, regroup, and share our ideas the following day when we reconvene. From there, we will decide how to best solution together or how to best proceed from there.</li>
-  <li><dl>In terms of tools and technologies that will help our collaboration, we find pulling and pushing on git (as well as VS Code Live Share) to alternate between driving and navigating together. Slack or Zoom are also useful for keeping our communication channels open outside class if necessary.</dl></li>
+  <li>In terms of tools and technologies that will help our collaboration, we find pulling and pushing on git (as well as VS Code Live Share) to alternate between driving and navigating together. Slack or Zoom are also useful for keeping our communication channels open outside class if necessary.</li>
 </ul>
 
 ## Learning Style
