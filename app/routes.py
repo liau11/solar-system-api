@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, abort, make_response
+import json
 
 
 class Planet:
@@ -8,13 +9,6 @@ class Planet:
         self.description = description
         self.is_planet = is_planet
 
-    def planet_dict(self):
-        return dict(
-            id = self.id
-            name = self,
-            description = self.description,
-            is_planet = self.is_planet
-        )
 
 planets = [
     Planet(
@@ -45,10 +39,12 @@ planets = [
 
 planets_bp = Blueprint("planets", __name__, url_prefix="/planets")
 
+
 @planets_bp.route("", methods=["GET"])
 def get_planets():
     planet_dict = [vars(planet) for planet in planets]
     return jsonify(planet_dict), 200
+
 
 def verify_planet(planet_id):
     try:
@@ -60,7 +56,14 @@ def verify_planet(planet_id):
             return planet
     return abort(make_response({"message": f"Planet {planet_id} not found"}, 404))
 
-@planets_bp.route("/<planet_id>", method=["GET"])
+
+@planets_bp.route("/<planet_id>", methods=["GET"])
 def get_planet(planet_id):
     planet = verify_planet(planet_id)
-    return jsonify(planet.planet_dict())
+
+    return {
+        "id": planet.id,
+        "name": planet.name,
+        "description": planet.description,
+        "is_planet": planet.is_planet,
+    }, 200
