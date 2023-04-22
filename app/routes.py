@@ -43,6 +43,7 @@ planets_bp = Blueprint("planets", __name__, url_prefix="/planets")
 @planets_bp.route("", methods=["GET"])
 def get_planets():
     planet_dict = [vars(planet) for planet in planets]
+
     return jsonify(planet_dict), 200
 
 
@@ -51,9 +52,11 @@ def verify_planet(planet_id):
         planet_id = int(planet_id)
     except:
         return abort(make_response({"message": f"Planet {planet_id} is invalid"}, 400))
+
     for planet in planets:
         if planet.id == planet_id:
             return planet
+
     return abort(make_response({"message": f"Planet {planet_id} not found"}, 404))
 
 
