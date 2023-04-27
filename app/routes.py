@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, abort, make_response
-
+import json
 
 class Planet:
     def __init__(self, id, name, description, is_planet):
@@ -8,12 +8,12 @@ class Planet:
         self.description = description
         self.is_planet = is_planet
 
-    def planet_dict(self):
+    def format_planet_dict(self):
         return dict(
-            id = self.id
-            name = self,
-            description = self.description,
-            is_planet = self.is_planet
+            id=self.id,
+            name=self.name,
+            description=self.description,
+            is_planet=self.is_planet
         )
 
 planets = [
@@ -40,27 +40,29 @@ planets = [
         True,
     ),
     Planet(8, "Neptune", "Neptune has supersonic winds.", True),
-    Planet(9, "Pluto", "Pluto is a Dwarf Planet.", False),
+    Planet(9, "Pluto", "Pluto is a Dwarf Planet.", False)
 ]
 
 planets_bp = Blueprint("planets", __name__, url_prefix="/planets")
+
+def verify_planet(planet_id):
+    try:
+        planet_id = int(planet_id)
+    except:
+        abort(make_response({"message": f"Planet {planet_id} is invalid"}, 400))
+
+    for planet in planets:
+        if planet.id == planet_id:
+            return planet
+        
+    abort(make_response({"message": f"Planet {planet_id} not found"}, 404))
 
 @planets_bp.route("", methods=["GET"])
 def get_planets():
     planet_dict = [vars(planet) for planet in planets]
     return jsonify(planet_dict), 200
 
-def verify_planet(planet_id):
-    try:
-        planet_id = int(planet_id)
-    except:
-        return abort(make_response({"message": f"Planet {planet_id} is invalid"}, 400))
-    for planet in planets:
-        if planet.id == planet_id:
-            return planet
-    return abort(make_response({"message": f"Planet {planet_id} not found"}, 404))
-
-@planets_bp.route("/<planet_id>", method=["GET"])
-def get_planet(planet_id):
+@planets_bp.route("/<planet_id>", methods=["GET"])
+def lookup_planet(planet_id):
     planet = verify_planet(planet_id)
-    return jsonify(planet.planet_dict())
+    return planet.format_planet_dict()
