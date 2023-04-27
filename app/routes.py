@@ -1,5 +1,9 @@
 from flask import Blueprint, jsonify, abort, make_response
 import json
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2fe3574ae18b5dc6d98e3658698249d992307d37
 
 class Planet:
     def __init__(self, id, name, description, is_planet):
@@ -60,6 +64,7 @@ def verify_planet(planet_id):
 @planets_bp.route("", methods=["GET"])
 def get_planets():
     planet_dict = [vars(planet) for planet in planets]
+
     return jsonify(planet_dict), 200
 
 @planets_bp.route("/<planet_id>", methods=["GET"])

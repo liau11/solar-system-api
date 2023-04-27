@@ -1,5 +1,7 @@
 # Solar System API
 
+<img src = "images/planet.jpeg" align="center" hspace="-35" width="90%">
+
 ## Goal
 
 
