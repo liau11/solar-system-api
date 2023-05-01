@@ -1,9 +1,7 @@
-from flask import Blueprint, jsonify, abort, make_response
-import json
-<<<<<<< HEAD
-=======
+from flask import Blueprint, jsonify, abort, make_response, request
+from app import db
+from app.model.planet import Planet
 
->>>>>>> 2fe3574ae18b5dc6d98e3658698249d992307d37
 
 class Planet:
     def __init__(self, id, name, description, is_planet):
@@ -17,8 +15,9 @@ class Planet:
             id=self.id,
             name=self.name,
             description=self.description,
-            is_planet=self.is_planet
+            is_planet=self.is_planet,
         )
+
 
 planets = [
     Planet(
@@ -44,10 +43,11 @@ planets = [
         True,
     ),
     Planet(8, "Neptune", "Neptune has supersonic winds.", True),
-    Planet(9, "Pluto", "Pluto is a Dwarf Planet.", False)
+    Planet(9, "Pluto", "Pluto is a Dwarf Planet.", False),
 ]
 
 planets_bp = Blueprint("planets", __name__, url_prefix="/planets")
+
 
 def verify_planet(planet_id):
     try:
@@ -58,14 +58,16 @@ def verify_planet(planet_id):
     for planet in planets:
         if planet.id == planet_id:
             return planet
-        
+
     abort(make_response({"message": f"Planet {planet_id} not found"}, 404))
+
 
 @planets_bp.route("", methods=["GET"])
 def get_planets():
     planet_dict = [vars(planet) for planet in planets]
 
     return jsonify(planet_dict), 200
+
 
 @planets_bp.route("/<planet_id>", methods=["GET"])
 def lookup_planet(planet_id):
