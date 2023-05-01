@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, abort, make_response, request
 from app import db
-from app.model.planet import Planet
+from app.Model.planet import Planet
 
 
 class Planet:
@@ -55,11 +55,12 @@ def verify_planet(planet_id):
     except:
         abort(make_response({"message": f"Planet {planet_id} is invalid"}, 400))
 
-    for planet in planets:
-        if planet.id == planet_id:
-            return planet
+    planet = Planet.query.get(planet_id)
 
-    abort(make_response({"message": f"Planet {planet_id} not found"}, 404))
+    if not planet:
+        abort(make_response({"message": f"Planet {planet_id} not found"}, 404))
+    
+    return planet    
 
 
 @planets_bp.route("", methods=["GET"])
