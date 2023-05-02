@@ -62,13 +62,13 @@ def create_planet():
     return {"name": new_planet.name, "msg": "Successfully created"}, 201
 
 @planets_bp.route("", methods=["GET"])
-def view_all_planets():
+def view_all_planets():  
     id_query = request.args.get("id")
     name_query = request.args.get("name")
     description_query = request.args.get("description")
     is_planet_query = request.args.get("is_planet")
 
-    planet_query = Planet.query
+    # planet_query = Planet.query
 
     if id_query:
         planet_query = planet_query.filter_by(id=id_query)
@@ -81,9 +81,19 @@ def view_all_planets():
     
     if is_planet_query:
         planet_query = planet_query.filter_by(is_planet=is_planet_query)
-
-    planets = planet_query.all()
+    else:
+        planets = planet_query.all()
     
+    # planets_response = []
+    # for planet in planets:
+    #     planets_response.append({
+    #         "id": planet.id,
+    #         "planet_name": planet.name,
+    #         "description": planet.description,
+    #         "is_planet": planet.is_planet
+    #     })
+
+    # Refactored code from 'commented out' section above'
     all_planets = [planet.format_planet_dict() for planet in planets]
 
     return jsonify(all_planets), 200
@@ -92,4 +102,4 @@ def view_all_planets():
 @planets_bp.route("/<planet_id>", methods=["GET"])
 def lookup_one_planet(planet_id):
     planet = verify_planet(planet_id)
-    return planet.format_planet_dict()
+    return planet.format_planet_dict(), 200
