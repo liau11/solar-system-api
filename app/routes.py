@@ -93,11 +93,24 @@ def lookup_one_planet(planet_id):
     planet = verify_planet(planet_id)
     return planet.format_planet_dict(), 200
 
-@planets_bp.route("<planet_id>", methods=["DELETE"))
-def delete_planet(planet_id)
+@planets_bp.route("<planet_id>", methods=["DELETE"])
+def delete_planet(planet_id):
     planet = verify_planet(planet_id)
 
     db.session.delete(planet)
     db.session.commit()
 
-    return make_response(f"Planet #{planet.id} successfully deleted.", 200)
+    return make_response(f"Planet #{planet.id} successfully deleted."), 200
+
+@planets_bp.route("<planet_id>", methods=["PUT"])
+def update_planet(planet_id):
+    planet = verify_planet(planet_id)
+    request_body = request.get_json()
+
+    planet.name = request_body["name"]
+    planet.description = request_body["description"]
+    planet.is_planet = request_body["is_planet"]
+
+    db.session.commit()
+
+    return make_response(f"planet #{planet_id} successfully updated"), 200
