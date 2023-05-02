@@ -61,15 +61,35 @@ def create_planet():
 
     return {"name": new_planet.name, "msg": "Successfully created"}, 201
 
+@planets_bp.route("", methods=["GET"])
+def view_all_planets():
+    id_query = request.args.get("id")
+    name_query = request.args.get("name")
+    description_query = request.args.get("description")
+    is_planet_query = request.args.get("is_planet")
 
-# @planets_bp.route("", methods=["GET"])
-# def get_planets():
-#     planet_dict = [vars(planet) for planet in planets]
+    planet_query = Planet.query
 
-#     return jsonify(planet_dict), 200
+    if id_query:
+        planet_query = planet_query.filter_by(id=id_query)
+
+    if name_query:
+        planet_query = planet_query.filter_by(name=name_query)
+
+    if description_query:
+        planet_query = planet_query.filter_by(description=description_query)
+    
+    if is_planet_query:
+        planet_query = planet_query.filter_by(is_planet=is_planet_query)
+
+    planets = planet_query.all()
+    
+    all_planets = [planet.format_planet_dict() for planet in planets]
+
+    return jsonify(all_planets), 200
 
 
 @planets_bp.route("/<planet_id>", methods=["GET"])
-def lookup_planet(planet_id):
+def lookup_one_planet(planet_id):
     planet = verify_planet(planet_id)
     return planet.format_planet_dict()
