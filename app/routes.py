@@ -61,40 +61,29 @@ def create_planet():
 
     return {"name": new_planet.name, "msg": "Successfully created"}, 201
 
+
 @planets_bp.route("", methods=["GET"])
-def view_all_planets():  
+def view_all_planets():
     id_query = request.args.get("id")
     name_query = request.args.get("name")
     description_query = request.args.get("description")
     is_planet_query = request.args.get("is_planet")
 
-    # planet_query = Planet.query
-
     if id_query:
-        planet_query = planet_query.filter_by(id=id_query)
+        planet_query = Planet.query.filter_by(id=id_query)
 
-    if name_query:
-        planet_query = planet_query.filter_by(name=name_query)
+    elif name_query:
+        planet_query = Planet.query.filter_by(name=name_query)
 
-    if description_query:
-        planet_query = planet_query.filter_by(description=description_query)
-    
-    if is_planet_query:
-        planet_query = planet_query.filter_by(is_planet=is_planet_query)
+    elif description_query:
+        planet_query = Planet.query.filter_by(description=description_query)
+
+    elif is_planet_query:
+        planet_query = Planet.query.filter_by(is_planet=is_planet_query)
     else:
-        planets = planet_query.all()
-    
-    # planets_response = []
-    # for planet in planets:
-    #     planets_response.append({
-    #         "id": planet.id,
-    #         "planet_name": planet.name,
-    #         "description": planet.description,
-    #         "is_planet": planet.is_planet
-    #     })
+        planet_query = Planet.query.all()
 
-    # Refactored code from 'commented out' section above'
-    all_planets = [planet.format_planet_dict() for planet in planets]
+    all_planets = [planet.format_planet_dict() for planet in planet_query]
 
     return jsonify(all_planets), 200
 
