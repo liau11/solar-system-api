@@ -91,7 +91,8 @@ def view_all_planets():
 @planets_bp.route("/<planet_id>", methods=["GET"])
 def lookup_one_planet(planet_id):
     planet = verify_planet(planet_id)
-    return planet.format_planet_dict(), 200
+    return (planet.format_planet_dict(), 200)
+
 
 @planets_bp.route("<planet_id>", methods=["DELETE"])
 def delete_planet(planet_id):
@@ -101,6 +102,7 @@ def delete_planet(planet_id):
     db.session.commit()
 
     return make_response(f"Planet #{planet.id} successfully deleted."), 200
+
 
 @planets_bp.route("<planet_id>", methods=["PUT"])
 def update_planet(planet_id):
